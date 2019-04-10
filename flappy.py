@@ -7,7 +7,7 @@ import pygame
 from pygame.locals import *
 import serial
 
-#ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('/dev/ttyACM0', 9600)
 
 def isfloat(value):
   try:
@@ -184,7 +184,7 @@ def showWelcomeAnimation():
                 }
         
         # JUMP INPUT
-        '''
+        
         valGo = ser.readline().strip()
         valFlo = isfloat(valGo)
         if valFlo and len(valGo)>0:
@@ -200,7 +200,7 @@ def showWelcomeAnimation():
                 broken = True
             if int(valGo) < .5 and broken:
                 broken = False
-        '''
+        
         # adjust playery, playerIndex, basex
         if (loopIter + 1) % 5 == 0:
             playerIndex = next(playerIndexGen)
@@ -243,7 +243,7 @@ def mainGame(movementInfo):
         {'x': SCREENWIDTH + 200 + (SCREENWIDTH / 2), 'y': newPipe2[1]['y']},
     ]
 
-    pipeVelX = -4
+    pipeVelX = -5
 
     # player velocity, max velocity, downward accleration, accleration on flap
     playerVelY    =  -9   # player's velocity along Y, default same as playerFlapped
@@ -334,7 +334,7 @@ def mainGame(movementInfo):
             lPipe['x'] += pipeVelX
 
         # add new pipe when first pipe is about to touch left of screen
-        if 0 < upperPipes[0]['x'] < 5:
+        if 0 < upperPipes[0]['x'] < 6:
             newPipe = getRandomPipe()
             upperPipes.append(newPipe[0])
             lowerPipes.append(newPipe[1])
